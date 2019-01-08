@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="DevTech,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近公司里需要用FairyGUI替换掉原来的UI系统，其优势在于将美术和设计的工作与程序一定意义上的隔离，这一块的体会之后还会再写一点什么单独说一下。由于FairyGUI的图集是按package来生成的，并没有动态图集的支持，于是看了一下相关的内容。">
+<meta name="keywords" content="DevTech">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Unity中使用动态图集">
+<meta property="og:url" content="https://johncookie.github.io/2019/01/07/在Unity中使用动态图集/index.html">
+<meta property="og:site_name" content="JohnCookie&#39;s Blog">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近公司里需要用FairyGUI替换掉原来的UI系统，其优势在于将美术和设计的工作与程序一定意义上的隔离，这一块的体会之后还会再写一点什么单独说一下。由于FairyGUI的图集是按package来生成的，并没有动态图集的支持，于是看了一下相关的内容。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2019/01/08/5c3455148f63a.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/08/5c34551419f4f.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/08/5c3455143ee9d.png">
+<meta property="og:updated_time" content="2019-01-08T07:56:05.416Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在Unity中使用动态图集">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近公司里需要用FairyGUI替换掉原来的UI系统，其优势在于将美术和设计的工作与程序一定意义上的隔离，这一块的体会之后还会再写一点什么单独说一下。由于FairyGUI的图集是按package来生成的，并没有动态图集的支持，于是看了一下相关的内容。">
+<meta name="twitter:image" content="https://i.loli.net/2019/01/08/5c3455148f63a.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://johncookie.github.io/2019/01/07/在Unity中使用动态图集/">
+
+
+
+
+
+  <title>在Unity中使用动态图集 | JohnCookie's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JohnCookie's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A Lazy Indie Game Developer</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://johncookie.github.io/2019/01/07/在Unity中使用动态图集/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JohnCookie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JohnCookie's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在Unity中使用动态图集</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-07T19:10:47+08:00">
+                2019-01-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近公司里需要用FairyGUI替换掉原来的UI系统，其优势在于将美术和设计的工作与程序一定意义上的隔离，这一块的体会之后还会再写一点什么单独说一下。由于FairyGUI的图集是按package来生成的，并没有动态图集的支持，于是看了一下相关的内容。<br><a id="more"></a></p>
+<h4 id="关于动态图集"><a href="#关于动态图集" class="headerlink" title="关于动态图集"></a>关于动态图集</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图集的概念就不多介绍了，主要的目的在于降低游戏的drawcall。一般而言大家都会将某一个系统模块的散图打成一张图集，或者将常用的UI组件打到一起，以此达到优化的目的。这些图集都是在游戏发布前就制作好的，也就是静态图集，然而考虑一下下面这个场景：王者荣耀在玩家选择完英雄进入游戏后，玩家的各个技能，英雄头像这些散图如果采用单独的贴图，每一张图片都将是一个单独的drawcall，这显然是有优化空间的。预先把所有技能头像打成图集显然不现实，而动态图集就能解决这样的问题，只需要将这些会用到的散图打到一张图集中，自然就能合并drawcall。<br><img src="https://i.loli.net/2019/01/08/5c3455148f63a.png" alt="kingsofhonorUI.png"></p>
+<h4 id="制作动态图集"><a href="#制作动态图集" class="headerlink" title="制作动态图集"></a>制作动态图集</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在NGUI中，提供了可以在运行时制作图集的UIAtlasMaker，但是在UGUI中，图集是Unity自动生成的（或者通过SpritePacker自己管理），并没有提供动态生成的方法。制作图集的原理很简单，只需要把我们原本按需加载的散图打到同一张图集中，从而达到将多个drawcall合并的目的，难点在于其中的分块算法。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好在这个问题早就有一个开源的项目——<a href="http://davikingcode.com/blog/unity-generate-spritesheets-at-runtime/" target="_blank" rel="noopener">UnityRuntimeSpriteSheetsGenerator</a>，利用他我们可以很方便的在 运行时制作出我们需要的动态图集。<br><img src="https://i.loli.net/2019/01/08/5c34551419f4f.png" alt="runtimeRectPacker.png"></p>
+<h4 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个开源项目一共只有6个文件，而其中制作动态图集用到的脚本为AssetPacker。<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">PackAtlas</span>(<span class="params"><span class="keyword">string</span> atlasName, UnityAction callback</span>)</span> &#123;</span><br><span class="line">    GameObject gameObj = <span class="keyword">new</span> GameObject();</span><br><span class="line">    AssetPacker assetPacker = gameObj.AddComponent&lt;AssetPacker&gt;();</span><br><span class="line">    packerDict.Add(atlasName, assetPacker);</span><br><span class="line">    assetPacker.useCache = <span class="literal">false</span>; <span class="comment">//是否使用缓存</span></span><br><span class="line">    assetPacker.cacheName = atlasName; <span class="comment">//图集名称</span></span><br><span class="line">    assetPacker.OnProcessCompleted.AddListener(callback); <span class="comment">//打包回调</span></span><br><span class="line">    assetPacker.AddTexturesToPack(prepareToPackDict[atlasName].ToArray()); <span class="comment">//添加要打包的散图</span></span><br><span class="line">    assetPacker.Process(); <span class="comment">//开始打包</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果不使用缓存，那么打出的图集保存在内存中，而使用的话则会存放一张图片和对应的配置文件到应用目录下，并根据版本号进行管理。在使用完成后，只需要将上面的GameObject销毁，AssetPacker会自动调用Dispose销毁对应的资源。以此为基础，可以构建更进一步的管理和编辑器扩展。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额外的，AssetPacker有两处代码需要进行一些优化修改。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一处，OnProcessCompleted需要给予一个默认值：<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> UnityEvent OnProcessCompleted = <span class="keyword">new</span> UnityEvent();</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二处，在createPack方法中，将原先的foreach循环改为for循环：<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;itemsToRaster.Count; i++)&#123;</span><br><span class="line">	<span class="comment">// xxx</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="结合到FairyGUI装载器"><a href="#结合到FairyGUI装载器" class="headerlink" title="结合到FairyGUI装载器"></a>结合到FairyGUI装载器</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回到这次的出发点，目的是在FairyGUI中支持动态图集，然后和装载器结合起来达到动态加载图片而不增加额外drawcall的目的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先根据FairyGUI的文档，我们需要继承GLoader来实现我们自己的装载方法。这里FairyGUI有一个巨大的坑：onExternalLoadSuccess需要传入一个NTexture对象，如果我们简单的使用new NTexture(texture)这个构造函数，会发现最后的drawcall并没有被合并。原因在于这种方式每次texture会被重新包装一次成NTexture，FairyGUI会把他们当作不同的贴图从而没有进行优化。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么为什么原来的GLoader在读取同一张贴图时就可以呢？一路查看源码到UIPackage.cs的LoadImage方法中，我们发现这个时候使用了NTexture的另一个构造函数，它传入的第一个参数也是NTexture类型。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;找到了两者的区别，我们就可以解决之前的困扰了。我们在AssetPacker生成图集后，将这份图集包装成NTexture缓存下来，每次都使用这个NTexture对象即可。<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onExternalLoadSuccess(<span class="keyword">new</span> NTexture(ntex, rect, <span class="literal">false</span>)); <span class="comment">//ntex为我们缓存下来的NTexture对象</span></span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最后还需要注意一个坐标系的问题，之前创建的图集信息是以左下为坐标原点的，而FairyGUI则是左上为坐标原点，因此我们的rect矩形需要做一下小的转换：<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rect.y = atlas.maxY - rect.y - sprite.height;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2019/01/08/5c3455143ee9d.png" alt="fguidynamicatlas.png">  </p>
+<p>参考资料：<br><a href="https://zhuanlan.zhihu.com/p/38004837" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/38004837</a><br><a href="https://blog.csdn.net/cyf649669121/article/details/81534183" target="_blank" rel="noopener">https://blog.csdn.net/cyf649669121/article/details/81534183</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DevTech/" rel="tag"># DevTech</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/03/2018-2019/" rel="next" title="2018-2019">
+                <i class="fa fa-chevron-left"></i> 2018-2019
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JohnCookie</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于动态图集"><span class="nav-number">1.</span> <span class="nav-text">关于动态图集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#制作动态图集"><span class="nav-number">2.</span> <span class="nav-text">制作动态图集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单示例"><span class="nav-number">3.</span> <span class="nav-text">简单示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结合到FairyGUI装载器"><span class="nav-number">4.</span> <span class="nav-text">结合到FairyGUI装载器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JohnCookie</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
