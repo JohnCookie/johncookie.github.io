@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;FairyGUI的设计目的是让美术和程序的工作独立开来，让程序专注于逻辑而让美术发挥出最大的界面效果。项目中对FairyGUI的导出加以扩展，会自动生成lua代码进行绑定，在查这部分资料时看到MVVM这个词，于是顺着又过了一遍MVC,MVP,MVVM的内容，简单作一些记录。">
+<meta name="description" content="生成、打包、部署和管理应用程序及类型《CLR via C#》第二章：生成、打包、部署和管理应用程序及类型">
 <meta name="keywords" content="DevTech">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MVC&amp;MVP&amp;MVVM以及Unity中的思考">
-<meta property="og:url" content="https://johncookie.github.io/2019/01/16/MVC-MVP-MVVM以及在Unity中的思考/index.html">
+<meta property="og:title" content="CLR via C#笔记——第二章">
+<meta property="og:url" content="https://johncookie.github.io/2019/08/21/CLR-via-C-笔记——第二章/index.html">
 <meta property="og:site_name" content="JohnCookie&#39;s Blog">
-<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;FairyGUI的设计目的是让美术和程序的工作独立开来，让程序专注于逻辑而让美术发挥出最大的界面效果。项目中对FairyGUI的导出加以扩展，会自动生成lua代码进行绑定，在查这部分资料时看到MVVM这个词，于是顺着又过了一遍MVC,MVP,MVVM的内容，简单作一些记录。">
+<meta property="og:description" content="生成、打包、部署和管理应用程序及类型《CLR via C#》第二章：生成、打包、部署和管理应用程序及类型">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-17T09:51:44.425Z">
+<meta property="og:updated_time" content="2019-08-21T06:59:06.984Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MVC&amp;MVP&amp;MVVM以及Unity中的思考">
-<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;FairyGUI的设计目的是让美术和程序的工作独立开来，让程序专注于逻辑而让美术发挥出最大的界面效果。项目中对FairyGUI的导出加以扩展，会自动生成lua代码进行绑定，在查这部分资料时看到MVVM这个词，于是顺着又过了一遍MVC,MVP,MVVM的内容，简单作一些记录。">
+<meta name="twitter:title" content="CLR via C#笔记——第二章">
+<meta name="twitter:description" content="生成、打包、部署和管理应用程序及类型《CLR via C#》第二章：生成、打包、部署和管理应用程序及类型">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://johncookie.github.io/2019/01/16/MVC-MVP-MVVM以及在Unity中的思考/">
+  <link rel="canonical" href="https://johncookie.github.io/2019/08/21/CLR-via-C-笔记——第二章/">
 
 
 
 
 
-  <title>MVC&MVP&MVVM以及Unity中的思考 | JohnCookie's Blog</title>
+  <title>CLR via C#笔记——第二章 | JohnCookie's Blog</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://johncookie.github.io/2019/01/16/MVC-MVP-MVVM以及在Unity中的思考/">
+    <link itemprop="mainEntityOfPage" href="https://johncookie.github.io/2019/08/21/CLR-via-C-笔记——第二章/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JohnCookie">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MVC&MVP&MVVM以及Unity中的思考</h1>
+          <h1 class="post-title" itemprop="name headline">CLR via C#笔记——第二章</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-16T18:54:38+08:00">
-                2019-01-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-21T14:52:02+08:00">
+                2019-08-21
               </time>
             
 
@@ -320,13 +320,37 @@
       
 
       
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FairyGUI的设计目的是让美术和程序的工作独立开来，让程序专注于逻辑而让美术发挥出最大的界面效果。项目中对FairyGUI的导出加以扩展，会自动生成lua代码进行绑定，在查这部分资料时看到MVVM这个词，于是顺着又过了一遍MVC,MVP,MVVM的内容，简单作一些记录。<br><a id="more"></a></p>
-<h4 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MVC:View-Control-Model，最早是用于桌面程序设计上，而我第一次接触到这个词则是在网页开发上。View和Model之间通过Control联系，正常逻辑从View接受输入开始，经过Control进行业务逻辑处理，改变Model状态，最后通知View更新状态给予反馈。这样视图和业务分离，使得视图需要改动时不会导致业务层逻辑也需要跟着进行重写。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是MVC下Model数据改变后需要通知View，这导致Model中会含有View的结构。  </p>
-<h4 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MVP:View-Presenter-Model，为了切断View和Model之间的联系，很自然的诞生了MVP。Model更新后通过Presenter通知View更新，减少了需求变化时需要维护的对象数量。由于Presenter和View之间通过定义好的接口通信，当View变化时，Presenter甚至不用变更，可以应对频繁的需求改动。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MVC和MVP有一个很大的问题在于大量的业务逻辑都堆积在Control或是Presenter中，导致越复杂的项目到后期越难以维护。  </p>
-<h4 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MVVM:View-ViewModel-Model，不再有界面接口，而是通过数据模型和数据双向绑定(观察者或是订阅等方式)，数据变动会自动反应到View上，视图上数据的变化也会直接影响数据源。这样一来使得业务逻辑和UI编写可以专注于自己的工作中，这一部分的思维就有些类似于FairyGUI的初衷了。  </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以上是一些很简单的总结，下面是一些结合到Unity的思考。</p>
-<h4 id="UI到底由谁来拼"><a href="#UI到底由谁来拼" class="headerlink" title="UI到底由谁来拼"></a>UI到底由谁来拼</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FairyGUI致力于让程序摆脱拼UI的工作，但在目前实际工作中这部分依然是不可避免的问题。这其中最大的矛盾在于，程序拼出的界面无法还原美术原来的设计，而美术往往又没有程序的思维导致缺少层级复用的结构。作为一名程序，虽然拼UI是一件枯燥乏味的工作，但是出于下面这些原因，个人还是觉得程序还是自己扛起这个担子更合适一些。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前面就提到了，美术缺少层级结构的思想，更多的会采用平铺素材的方式，这和程序的思维是非常矛盾的。而当发现UI结构需要更改时，如果还需要通知美术并告知正确的摆放方式，其中的成本实在有点高，是不是会说这还不如我来做呢。我们在制作UI时也应该考虑资源是否可以重用，能不能抽象成一个内部模块（比如一个星级控件），大图是否可以做九宫格优化，图集是否可以合并，UI结构哪里需要独立，布局怎么适配不同分辨率，元素的锚点和缩放方式等等，而这些美术方面往往无法考虑周全。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;程序的思想就是抽象和简化，在思考包括美术资源如何管理，策划配置如何填写的问题时，我们不应当仅仅把自己放在程序的位置上，而应当站到更高的高度，考虑美术和策划的习惯，这样才能更好的做出更易用的设计，做出真正高效的工具。  </p>
-<h4 id="Unity中是否需要使用MVC等"><a href="#Unity中是否需要使用MVC等" class="headerlink" title="Unity中是否需要使用MVC等"></a>Unity中是否需要使用MVC等</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;答案自然是可以的，虽然游戏的界面与网页或是移动APP相比要复杂得多，但是MVX本身得核心思想是将视图、业务逻辑、数据进行解耦，这一点毫无疑问是通用的。而其实反观写过的项目，其实MVX的思想早就深入人心，大家都会对数据进行封装，UI也往往通过其他组件或是管理类来通信。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是当牵涉到GamePlay的逻辑时，如果再强行套用MVX，就有些不合适了。我们要明白MVX诞生的原因和他所解决的问题，而不是什么都往模式上靠。由于<a href="http://gad.qq.com/article/detail/28682" target="_blank" rel="noopener">一则守望先锋架构的宣讲</a>，最近ECS被顶上了风口浪尖，而Unity也推出了ECS和Job System，之后我也会学习一下并记一些笔记。</p>
+        <h3 id="生成、打包、部署和管理应用程序及类型"><a href="#生成、打包、部署和管理应用程序及类型" class="headerlink" title="生成、打包、部署和管理应用程序及类型"></a>生成、打包、部署和管理应用程序及类型</h3><p>《CLR via C#》第二章：生成、打包、部署和管理应用程序及类型<br><a id="more"></a></p>
+<h4 id="NET-Framework部署目标"><a href="#NET-Framework部署目标" class="headerlink" title=".NET Framework部署目标"></a>.NET Framework部署目标</h4><p>所有应用程序都使用来自Microsoft或其他厂商的动态链接库DLL，导致DLL hell。<br>大多数应用程序在安装时会影响到系统的全部组建，安装和卸载时可能会有残留。<br>应用程序安装会带来由不同公司开发的文件，如ActiveX控件，它们可能下载一些代码来执行任何操作，这会带来安全性问题。  </p>
+<h4 id="将类型生成到模块中"><a href="#将类型生成到模块中" class="headerlink" title="将类型生成到模块中"></a>将类型生成到模块中</h4><p>使用csc.exe指示C#编译器生成可执行文件。  </p>
+<pre><code class="CSharp">csc.exe /<span class="keyword">out</span>:Program.exe /t:exe /r:MSCorLib.dll Program.cs
+</code></pre>
+<p><strong>响应文件</strong>是包含一组编译器命令行开关的文本文件。  </p>
+<pre><code class="CSharp">csc.exe @MyProject.rsp CodeFile1.cs CodeFile2.cs <span class="comment">//指定响应文件</span>
+</code></pre>
+<h4 id="元数据描述"><a href="#元数据描述" class="headerlink" title="元数据描述"></a>元数据描述</h4><p><strong>元数据</strong>是由几个表构成的二进制数据块。包含三种表，分别为定义表、引用表和清单表。<br>常见的定义表：<br>ModuleDef, TypeDef, MethodDef, FiledDef, ParamDef, PropertyDef, EventDef<br>常见的引用表：<br>AssemblyRef, ModuleRef, TypeRef, MemberRef<br>可以使用ILDasm.exe即IL Disassembler（IL反汇编器）查看源数据表。  </p>
+<h4 id="将模块合并成程序集"><a href="#将模块合并成程序集" class="headerlink" title="将模块合并成程序集"></a>将模块合并成程序集</h4><p><strong>程序集</strong>是一个或多个类型定义文件及资源文件的集合。<br>CLR操作的是程序集，总是先加载包含清单元数据表的文件，再根据清单来获取程序集中其他文件的名称。<br>程序集的特点：  </p>
+<ul>
+<li>程序集定义了可重用的类型  </li>
+<li>程序集用一个版本号标记  </li>
+<li>程序集可以关联安全信息  </li>
+</ul>
+<p>程序集的优势：  </p>
+<ul>
+<li>不同的类型使用不同的文件，可以以增量方式下载，对应用程序进行分批/部分的打包/部署  </li>
+<li>可在程序集中添加资源或数据文件  </li>
+<li>程序集包含的各个类型可以用不同语言实现。  </li>
+</ul>
+<p>程序集是进行重用、版本控制、应用安全性设置的基础单元。<br>VS中，利用解决方案选项，当前项目可以引用同一个解决方案中另一个项目创建的程序集。<br>同样可以使用程序集链接器AL.exe来创建程序集。也可以用AL.exe生成只含资源的程序集，即附属程序集。  </p>
+<h4 id="程序集版本资源信息"><a href="#程序集版本资源信息" class="headerlink" title="程序集版本资源信息"></a>程序集版本资源信息</h4><p>对于VS项目，会在Properties文件夹中自动创建AssemblyInfo.cs文件。<br>程序集中的三个版本号：  </p>
+<ul>
+<li>AssemblyFileVersion：<br>仅供参考，CLR不检查也不关心，可在Windows资源管理器中查看，根据它识别程序集版本号。  </li>
+<li>AssemblyInformationalVersion：<br>仅供参考，CLR不检查也不关心，指出包含该程序集的产品的版本。  </li>
+<li>AssemblyVersion：<br>存储与AssemblyDef清单元数据表中，是程序集的唯一性标识。CLR在绑定到强命名程序集时会使用。  </li>
+</ul>
+<h4 id="语言文化"><a href="#语言文化" class="headerlink" title="语言文化"></a>语言文化</h4><p>程序集将<strong>语言文化</strong>作为身份标识的一部分。<br>未指定具体语言文化的程序集称为<strong>语言文化中性</strong>。  </p>
+<h4 id="简单应用程序部署（私有部署的程序集）"><a href="#简单应用程序部署（私有部署的程序集）" class="headerlink" title="简单应用程序部署（私有部署的程序集）"></a>简单应用程序部署（私有部署的程序集）</h4><p>在应用程序基目录或者子目录部署的程序集称为<strong>私有部署的程序集（privately deployed assembly）</strong>，该程序集文件不和其他任何应用程序共享。  </p>
+<h4 id="简单管理控制（配置）"><a href="#简单管理控制（配置）" class="headerlink" title="简单管理控制（配置）"></a>简单管理控制（配置）</h4><p>为了实现对应用程序的管理控制，可在应用程序目录放入一个配置文件。CLR会解析文件内容来更改程序集文件的定位和加载策略。</p>
 
       
     </div>
@@ -357,8 +381,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/07/在Unity中使用动态图集/" rel="next" title="在Unity中使用动态图集">
-                <i class="fa fa-chevron-left"></i> 在Unity中使用动态图集
+              <a href="/2019/03/15/CLR-via-C-笔记——第一章/" rel="next" title="CLR via C#笔记——第一章">
+                <i class="fa fa-chevron-left"></i> CLR via C#笔记——第一章
               </a>
             
           </div>
@@ -366,10 +390,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/15/CLR-via-C-笔记——第一章/" rel="prev" title="CLR via C#笔记——第一章">
-                CLR via C#笔记——第一章 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -492,7 +512,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#MVC"><span class="nav-number">1.</span> <span class="nav-text">MVC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVP"><span class="nav-number">2.</span> <span class="nav-text">MVP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVVM"><span class="nav-number">3.</span> <span class="nav-text">MVVM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UI到底由谁来拼"><span class="nav-number">4.</span> <span class="nav-text">UI到底由谁来拼</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity中是否需要使用MVC等"><span class="nav-number">5.</span> <span class="nav-text">Unity中是否需要使用MVC等</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成、打包、部署和管理应用程序及类型"><span class="nav-number">1.</span> <span class="nav-text">生成、打包、部署和管理应用程序及类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-Framework部署目标"><span class="nav-number">1.1.</span> <span class="nav-text">.NET Framework部署目标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将类型生成到模块中"><span class="nav-number">1.2.</span> <span class="nav-text">将类型生成到模块中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#元数据描述"><span class="nav-number">1.3.</span> <span class="nav-text">元数据描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将模块合并成程序集"><span class="nav-number">1.4.</span> <span class="nav-text">将模块合并成程序集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#程序集版本资源信息"><span class="nav-number">1.5.</span> <span class="nav-text">程序集版本资源信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#语言文化"><span class="nav-number">1.6.</span> <span class="nav-text">语言文化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单应用程序部署（私有部署的程序集）"><span class="nav-number">1.7.</span> <span class="nav-text">简单应用程序部署（私有部署的程序集）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单管理控制（配置）"><span class="nav-number">1.8.</span> <span class="nav-text">简单管理控制（配置）</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="CLR执行模型《CLR via C#》第一章笔记">
+<meta name="description" content="CLR执行模型《CLR via C#》第一章：CLR的执行模型">
 <meta name="keywords" content="DevTech">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CLR via C#笔记——第一章">
 <meta property="og:url" content="https://johncookie.github.io/2019/03/15/CLR-via-C-笔记——第一章/index.html">
 <meta property="og:site_name" content="JohnCookie&#39;s Blog">
-<meta property="og:description" content="CLR执行模型《CLR via C#》第一章笔记">
+<meta property="og:description" content="CLR执行模型《CLR via C#》第一章：CLR的执行模型">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2019/03/15/5c8b4f1dca2a8.png">
 <meta property="og:image" content="https://i.loli.net/2019/03/15/5c8b4f1dc53cb.png">
 <meta property="og:image" content="https://i.loli.net/2019/03/15/5c8b4f1dc321c.png">
-<meta property="og:updated_time" content="2019-03-15T07:16:56.431Z">
+<meta property="og:updated_time" content="2019-08-21T06:50:45.262Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CLR via C#笔记——第一章">
-<meta name="twitter:description" content="CLR执行模型《CLR via C#》第一章笔记">
+<meta name="twitter:description" content="CLR执行模型《CLR via C#》第一章：CLR的执行模型">
 <meta name="twitter:image" content="https://i.loli.net/2019/03/15/5c8b4f1dca2a8.png">
 
 
@@ -324,7 +324,7 @@
       
 
       
-        <h3 id="CLR执行模型"><a href="#CLR执行模型" class="headerlink" title="CLR执行模型"></a>CLR执行模型</h3><p>《CLR via C#》第一章笔记<br><a id="more"></a></p>
+        <h3 id="CLR执行模型"><a href="#CLR执行模型" class="headerlink" title="CLR执行模型"></a>CLR执行模型</h3><p>《CLR via C#》第一章：CLR的执行模型<br><a id="more"></a></p>
 <h4 id="源代码编译成托管模块"><a href="#源代码编译成托管模块" class="headerlink" title="源代码编译成托管模块"></a>源代码编译成托管模块</h4><p><strong>CLR-Common Language Runtime-公共语言运行时</strong>，可由多种编程语言使用的运行时。<br>核心功能包括内存管理，程序集加载，安全性，异常处理，线程同步等，可由面向CLR的所有语言使用。<br>CLR不关心开发人员使用哪一种语言编写源代码。无论使用哪个编译器，结果都是<strong>托管模块</strong>。<br><strong>托管模块</strong>：标准的Microsoft Windows可以指执行体（Portable Executable，PE32，PE32+）文件，需要CLR才能执行。托管程序集总是利用Windows的数据执行保护（Data Execution Prevention，DEP）和地址空间布局随机化（Address Space Layout Randomization，ASLR），旨在增强整体系统的安全性。  </p>
 <p>托管模块的各个部分：<br><strong>PE32或PE32+头</strong>：标准Windows PE文件头，类似于公共对象文件格式头，PE32能在32位或64位版本上运行，PE32+则只能在64位版本运行。标识了文件类型，包括GUI,CUI或者DLL，并包含一个时间标记指出生成时间。对于只包含IL代码的模块，大多数信息会被忽略。对于包含本机native CPU代码的模块，还包含与本机CPU代码相关的信息。<br><strong>CLR头</strong>：包含使这个模块成为托管模块的信息，包括要求的CLR版本，一些标志，托管模块入口方法的MethodDef元数据token及模块的元数据，资源，强名称等。<br><strong>元数据</strong>：每个托管模块都包含元数据表。一种表描述源代码中定义的类型和成员，一种表描述源代码引用的类型和成员。<br><strong>IL（中间语言）代码</strong>：编译器编译源代码时生成的代码。运行时，CLR将IL编译成本机CPU指令。<br>IL代码又称为<strong>托管代码</strong>，CLR管理它的执行。  </p>
 <p>元数据是包括COM的类型库（Type Library）和接口定义语言（Interface Definition Language，IDL）文件等老技术的超集。元数据总是与包含IL代码的文件关联。由于编译器同时生成元数据和代码，绑定并嵌入最终生成的托管模块，元数据和它描述的IL代码永远不会失去同步。  </p>
@@ -443,6 +443,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/08/21/CLR-via-C-笔记——第二章/" rel="prev" title="CLR via C#笔记——第二章">
+                CLR via C#笔记——第二章 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -518,7 +522,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
