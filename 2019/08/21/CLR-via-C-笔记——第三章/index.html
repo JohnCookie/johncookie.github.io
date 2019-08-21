@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="生成、打包、部署和管理应用程序及类型《CLR via C#》第二章：生成、打包、部署和管理应用程序及类型">
+<meta name="description" content="共享程序集和强命名程序集《CLR via C#》第三章：共享程序集和强命名程序集">
 <meta name="keywords" content="DevTech">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CLR via C#笔记——第二章">
-<meta property="og:url" content="https://johncookie.github.io/2019/08/21/CLR-via-C-笔记——第二章/index.html">
+<meta property="og:title" content="CLR via C#笔记——第三章">
+<meta property="og:url" content="https://johncookie.github.io/2019/08/21/CLR-via-C-笔记——第三章/index.html">
 <meta property="og:site_name" content="JohnCookie&#39;s Blog">
-<meta property="og:description" content="生成、打包、部署和管理应用程序及类型《CLR via C#》第二章：生成、打包、部署和管理应用程序及类型">
+<meta property="og:description" content="共享程序集和强命名程序集《CLR via C#》第三章：共享程序集和强命名程序集">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-21T06:59:06.984Z">
+<meta property="og:image" content="https://i.loli.net/2019/08/21/rcN5MjxfHCa9vXd.png">
+<meta property="og:updated_time" content="2019-08-21T07:55:25.274Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CLR via C#笔记——第二章">
-<meta name="twitter:description" content="生成、打包、部署和管理应用程序及类型《CLR via C#》第二章：生成、打包、部署和管理应用程序及类型">
+<meta name="twitter:title" content="CLR via C#笔记——第三章">
+<meta name="twitter:description" content="共享程序集和强命名程序集《CLR via C#》第三章：共享程序集和强命名程序集">
+<meta name="twitter:image" content="https://i.loli.net/2019/08/21/rcN5MjxfHCa9vXd.png">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://johncookie.github.io/2019/08/21/CLR-via-C-笔记——第二章/">
+  <link rel="canonical" href="https://johncookie.github.io/2019/08/21/CLR-via-C-笔记——第三章/">
 
 
 
 
 
-  <title>CLR via C#笔记——第二章 | JohnCookie's Blog</title>
+  <title>CLR via C#笔记——第三章 | JohnCookie's Blog</title>
   
 
 
@@ -253,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://johncookie.github.io/2019/08/21/CLR-via-C-笔记——第二章/">
+    <link itemprop="mainEntityOfPage" href="https://johncookie.github.io/2019/08/21/CLR-via-C-笔记——第三章/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JohnCookie">
@@ -270,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CLR via C#笔记——第二章</h1>
+          <h1 class="post-title" itemprop="name headline">CLR via C#笔记——第三章</h1>
         
 
         <div class="post-meta">
@@ -282,7 +284,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-21T14:52:02+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-21T15:17:29+08:00">
                 2019-08-21
               </time>
             
@@ -320,37 +322,27 @@
       
 
       
-        <h3 id="生成、打包、部署和管理应用程序及类型"><a href="#生成、打包、部署和管理应用程序及类型" class="headerlink" title="生成、打包、部署和管理应用程序及类型"></a>生成、打包、部署和管理应用程序及类型</h3><p>《CLR via C#》第二章：生成、打包、部署和管理应用程序及类型<br><a id="more"></a></p>
-<h4 id="NET-Framework部署目标"><a href="#NET-Framework部署目标" class="headerlink" title=".NET Framework部署目标"></a>.NET Framework部署目标</h4><p>所有应用程序都使用来自Microsoft或其他厂商的动态链接库DLL，导致DLL hell。<br>大多数应用程序在安装时会影响到系统的全部组建，安装和卸载时可能会有残留。<br>应用程序安装会带来由不同公司开发的文件，如ActiveX控件，它们可能下载一些代码来执行任何操作，这会带来安全性问题。  </p>
-<h4 id="将类型生成到模块中"><a href="#将类型生成到模块中" class="headerlink" title="将类型生成到模块中"></a>将类型生成到模块中</h4><p>使用csc.exe指示C#编译器生成可执行文件。  </p>
-<pre><code class="CSharp">csc.exe /<span class="keyword">out</span>:Program.exe /t:exe /r:MSCorLib.dll Program.cs
-</code></pre>
-<p><strong>响应文件</strong>是包含一组编译器命令行开关的文本文件。  </p>
-<pre><code class="CSharp">csc.exe @MyProject.rsp CodeFile1.cs CodeFile2.cs <span class="comment">//指定响应文件</span>
-</code></pre>
-<h4 id="元数据描述"><a href="#元数据描述" class="headerlink" title="元数据描述"></a>元数据描述</h4><p><strong>元数据</strong>是由几个表构成的二进制数据块。包含三种表，分别为定义表、引用表和清单表。<br>常见的定义表：<br>ModuleDef, TypeDef, MethodDef, FiledDef, ParamDef, PropertyDef, EventDef<br>常见的引用表：<br>AssemblyRef, ModuleRef, TypeRef, MemberRef<br>可以使用ILDasm.exe即IL Disassembler（IL反汇编器）查看源数据表。  </p>
-<h4 id="将模块合并成程序集"><a href="#将模块合并成程序集" class="headerlink" title="将模块合并成程序集"></a>将模块合并成程序集</h4><p><strong>程序集</strong>是一个或多个类型定义文件及资源文件的集合。<br>CLR操作的是程序集，总是先加载包含清单元数据表的文件，再根据清单来获取程序集中其他文件的名称。<br>程序集的特点：  </p>
+        <h3 id="共享程序集和强命名程序集"><a href="#共享程序集和强命名程序集" class="headerlink" title="共享程序集和强命名程序集"></a>共享程序集和强命名程序集</h3><p>《CLR via C#》第三章：共享程序集和强命名程序集<br><a id="more"></a></p>
+<h4 id="两种程序集，两种部署"><a href="#两种程序集，两种部署" class="headerlink" title="两种程序集，两种部署"></a>两种程序集，两种部署</h4><p>弱命名程序集&amp;强命名程序集<br>强命名程序集使用发布者的公钥/私钥进行签名，使得程序集被唯一性的标识。<br>私有部署&amp;全局部署<br>私有部署：部署到应用程序基目录或者某个子目录<br>全局部署：部署到一些公认位置。CLR在查找程序集时会检查这些位置。<br>强命名程序集可以私有部署也可以全局部署。弱命名程序集只能私有部署。  </p>
+<h4 id="为程序集分配强名称"><a href="#为程序集分配强名称" class="headerlink" title="为程序集分配强名称"></a>为程序集分配强名称</h4><p>强命名程序集具有4个重要特性：文件名（不计扩展名）、版本号、语言文化、公钥<br>公钥数字很大，因此常使用公钥派生的小哈希值，称为公钥标记（public key token）。<br>例如：”MyTypes, Vesion=1.0.8123.0, Culture=neutrail, PublicKeyToken=b7a5c571934e089”<br>其他唯一性标识技术：<br>GUID（Global Unique Identifier，全局唯一标识符）<br>URL（Uniform Resource Locator，统一资源定位符）<br>URN（Uniform Resource Name，统一资源名称）<br>创建强命名程序集可以使用.Net Framework SDK和VS随带的Strong Name实用程序（SN.exe）获取密钥。  </p>
+<h4 id="全局程序缓存"><a href="#全局程序缓存" class="headerlink" title="全局程序缓存"></a>全局程序缓存</h4><p>由多个应用程序访问的程序集必须放到公认目录，称为全局程序集缓存（Global Assembly Cache, GAC）。<br>可以使用GACUtil工具安装强命名程序集。  </p>
+<h4 id="在生成的程序集中引用强命名程序集"><a href="#在生成的程序集中引用强命名程序集" class="headerlink" title="在生成的程序集中引用强命名程序集"></a>在生成的程序集中引用强命名程序集</h4><h4 id="强命名程序集能防篡改"><a href="#强命名程序集能防篡改" class="headerlink" title="强命名程序集能防篡改"></a>强命名程序集能防篡改</h4><p>用私钥对程序集进行签名，并将公钥和签名嵌入程序集，CLR就可验证程序集未被修改或破坏。  </p>
+<h4 id="延迟签名"><a href="#延迟签名" class="headerlink" title="延迟签名"></a>延迟签名</h4><p>延迟签名允许只用公司的公钥生成程序集，暂时不用私钥。该技术称为延迟签名（delayed signing）或部分签名（partial signing）。但是这么做会失去保护，只有开发阶段使用。  </p>
+<h4 id="私有部署强命名程序集"><a href="#私有部署强命名程序集" class="headerlink" title="私有部署强命名程序集"></a>私有部署强命名程序集</h4><p>在GAC中安装程序集的优势：  </p>
 <ul>
-<li>程序集定义了可重用的类型  </li>
-<li>程序集用一个版本号标记  </li>
-<li>程序集可以关联安全信息  </li>
+<li>能被多个应用程序共享，减少总体物理内存消耗  </li>
+<li>容易更新新版本  </li>
+<li>可以实现对程序集多个版本的并行管理  </li>
 </ul>
-<p>程序集的优势：  </p>
+<p>强命名程序集除了部署到GAC或者进行私有部署，还可以部署到只有少数应用程序知道的目录。但由于u搜友应用程序不能独立决定何时可以拆卸程序集文件，不推荐使用。  </p>
+<h4 id="“运行时”如何解析类型引用"><a href="#“运行时”如何解析类型引用" class="headerlink" title="“运行时”如何解析类型引用"></a>“运行时”如何解析类型引用</h4><p>解析引用的类型时，CLR可能在三个地方找到类型：  </p>
 <ul>
-<li>不同的类型使用不同的文件，可以以增量方式下载，对应用程序进行分批/部分的打包/部署  </li>
-<li>可在程序集中添加资源或数据文件  </li>
-<li>程序集包含的各个类型可以用不同语言实现。  </li>
+<li>相同文件<br>编译时便能发现对相同文件中的类型的访问，称为“早期绑定”（early binding）。类型直接从文件中加载。（对应的，在运行时通过反射机制绑定类型并调用的方法称为晚期绑定late binding）  </li>
+<li>不同文件，相同程序集<br>“运行时”确保被引用的文件在当前程序集元数据的FileDef表中，检查加载程序集清单文件的目录，加载被引用的文件，检查哈希值确保文件完整性。发现类型成员，执行继续。  </li>
+<li>不同文件，不同程序集<br>如果引用的类型在其他程序集文件中，会加载被引用程序集的清单文件。如果需要的类型不在该文件中，就继续加载包含的类型文件。发现类型的成员，执行继续。  </li>
 </ul>
-<p>程序集是进行重用、版本控制、应用安全性设置的基础单元。<br>VS中，利用解决方案选项，当前项目可以引用同一个解决方案中另一个项目创建的程序集。<br>同样可以使用程序集链接器AL.exe来创建程序集。也可以用AL.exe生成只含资源的程序集，即附属程序集。  </p>
-<h4 id="程序集版本资源信息"><a href="#程序集版本资源信息" class="headerlink" title="程序集版本资源信息"></a>程序集版本资源信息</h4><p>对于VS项目，会在Properties文件夹中自动创建AssemblyInfo.cs文件。<br>程序集中的三个版本号：  </p>
-<ul>
-<li>AssemblyFileVersion：<br>仅供参考，CLR不检查也不关心，可在Windows资源管理器中查看，根据它识别程序集版本号。  </li>
-<li>AssemblyInformationalVersion：<br>仅供参考，CLR不检查也不关心，指出包含该程序集的产品的版本。  </li>
-<li>AssemblyVersion：<br>存储与AssemblyDef清单元数据表中，是程序集的唯一性标识。CLR在绑定到强命名程序集时会使用。  </li>
-</ul>
-<h4 id="语言文化"><a href="#语言文化" class="headerlink" title="语言文化"></a>语言文化</h4><p>程序集将<strong>语言文化</strong>作为身份标识的一部分。<br>未指定具体语言文化的程序集称为<strong>语言文化中性</strong>。  </p>
-<h4 id="简单应用程序部署（私有部署的程序集）"><a href="#简单应用程序部署（私有部署的程序集）" class="headerlink" title="简单应用程序部署（私有部署的程序集）"></a>简单应用程序部署（私有部署的程序集）</h4><p>在应用程序基目录或者子目录部署的程序集称为<strong>私有部署的程序集（privately deployed assembly）</strong>，该程序集文件不和其他任何应用程序共享。  </p>
-<h4 id="简单管理控制（配置）"><a href="#简单管理控制（配置）" class="headerlink" title="简单管理控制（配置）"></a>简单管理控制（配置）</h4><p>为了实现对应用程序的管理控制，可在应用程序目录放入一个配置文件。CLR会解析文件内容来更改程序集文件的定位和加载策略。</p>
+<p><img src="https://i.loli.net/2019/08/21/rcN5MjxfHCa9vXd.png" alt="locate_assembly_strategy.png" title="定位程序集文件策略">  </p>
+<h4 id="高级管理控制（配置）"><a href="#高级管理控制（配置）" class="headerlink" title="高级管理控制（配置）"></a>高级管理控制（配置）</h4><p>略  </p>
 
       
     </div>
@@ -381,8 +373,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/15/CLR-via-C-笔记——第一章/" rel="next" title="CLR via C#笔记——第一章">
-                <i class="fa fa-chevron-left"></i> CLR via C#笔记——第一章
+              <a href="/2019/08/21/CLR-via-C-笔记——第二章/" rel="next" title="CLR via C#笔记——第二章">
+                <i class="fa fa-chevron-left"></i> CLR via C#笔记——第二章
               </a>
             
           </div>
@@ -390,10 +382,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/21/CLR-via-C-笔记——第三章/" rel="prev" title="CLR via C#笔记——第三章">
-                CLR via C#笔记——第三章 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -516,7 +504,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成、打包、部署和管理应用程序及类型"><span class="nav-number">1.</span> <span class="nav-text">生成、打包、部署和管理应用程序及类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NET-Framework部署目标"><span class="nav-number">1.1.</span> <span class="nav-text">.NET Framework部署目标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将类型生成到模块中"><span class="nav-number">1.2.</span> <span class="nav-text">将类型生成到模块中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#元数据描述"><span class="nav-number">1.3.</span> <span class="nav-text">元数据描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将模块合并成程序集"><span class="nav-number">1.4.</span> <span class="nav-text">将模块合并成程序集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#程序集版本资源信息"><span class="nav-number">1.5.</span> <span class="nav-text">程序集版本资源信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#语言文化"><span class="nav-number">1.6.</span> <span class="nav-text">语言文化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单应用程序部署（私有部署的程序集）"><span class="nav-number">1.7.</span> <span class="nav-text">简单应用程序部署（私有部署的程序集）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单管理控制（配置）"><span class="nav-number">1.8.</span> <span class="nav-text">简单管理控制（配置）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#共享程序集和强命名程序集"><span class="nav-number">1.</span> <span class="nav-text">共享程序集和强命名程序集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#两种程序集，两种部署"><span class="nav-number">1.1.</span> <span class="nav-text">两种程序集，两种部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为程序集分配强名称"><span class="nav-number">1.2.</span> <span class="nav-text">为程序集分配强名称</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局程序缓存"><span class="nav-number">1.3.</span> <span class="nav-text">全局程序缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在生成的程序集中引用强命名程序集"><span class="nav-number">1.4.</span> <span class="nav-text">在生成的程序集中引用强命名程序集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#强命名程序集能防篡改"><span class="nav-number">1.5.</span> <span class="nav-text">强命名程序集能防篡改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#延迟签名"><span class="nav-number">1.6.</span> <span class="nav-text">延迟签名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#私有部署强命名程序集"><span class="nav-number">1.7.</span> <span class="nav-text">私有部署强命名程序集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“运行时”如何解析类型引用"><span class="nav-number">1.8.</span> <span class="nav-text">“运行时”如何解析类型引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高级管理控制（配置）"><span class="nav-number">1.9.</span> <span class="nav-text">高级管理控制（配置）</span></a></li></ol></li></ol></div>
             
 
           </div>
