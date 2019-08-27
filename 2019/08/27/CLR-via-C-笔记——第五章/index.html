@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Life,">
+  <meta name="keywords" content="DevTech,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;之前不怎么写年终总结或展望，因为更多是走个形式。去年年初曾经订过一些年度的事项，刚才看了一眼除了学习方面倒也完成了七七八八。之所以打算这次写一些，主要还是由于两个因素，一是恰逢换了一份工作环境，相当于一个新的开始，的确有一些可以总结的东西，二是搭建了gitpage，也算用这个开个头。">
-<meta name="keywords" content="Life">
+<meta name="description" content="基元类型、引用类型和值类型《CLR via C#》第五章：基元类型、引用类型和值类型">
+<meta name="keywords" content="DevTech">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2018-2019">
-<meta property="og:url" content="https://johncookie.github.io/2019/01/03/2018-2019/index.html">
+<meta property="og:title" content="CLR-via-C#笔记——第五章">
+<meta property="og:url" content="https://johncookie.github.io/2019/08/27/CLR-via-C-笔记——第五章/index.html">
 <meta property="og:site_name" content="JohnCookie&#39;s Blog">
-<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;之前不怎么写年终总结或展望，因为更多是走个形式。去年年初曾经订过一些年度的事项，刚才看了一眼除了学习方面倒也完成了七七八八。之所以打算这次写一些，主要还是由于两个因素，一是恰逢换了一份工作环境，相当于一个新的开始，的确有一些可以总结的东西，二是搭建了gitpage，也算用这个开个头。">
+<meta property="og:description" content="基元类型、引用类型和值类型《CLR via C#》第五章：基元类型、引用类型和值类型">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-08T07:42:50.671Z">
+<meta property="og:updated_time" content="2019-08-27T08:00:03.322Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2018-2019">
-<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;之前不怎么写年终总结或展望，因为更多是走个形式。去年年初曾经订过一些年度的事项，刚才看了一眼除了学习方面倒也完成了七七八八。之所以打算这次写一些，主要还是由于两个因素，一是恰逢换了一份工作环境，相当于一个新的开始，的确有一些可以总结的东西，二是搭建了gitpage，也算用这个开个头。">
+<meta name="twitter:title" content="CLR-via-C#笔记——第五章">
+<meta name="twitter:description" content="基元类型、引用类型和值类型《CLR via C#》第五章：基元类型、引用类型和值类型">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://johncookie.github.io/2019/01/03/2018-2019/">
+  <link rel="canonical" href="https://johncookie.github.io/2019/08/27/CLR-via-C-笔记——第五章/">
 
 
 
 
 
-  <title>2018-2019 | JohnCookie's Blog</title>
+  <title>CLR-via-C#笔记——第五章 | JohnCookie's Blog</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://johncookie.github.io/2019/01/03/2018-2019/">
+    <link itemprop="mainEntityOfPage" href="https://johncookie.github.io/2019/08/27/CLR-via-C-笔记——第五章/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JohnCookie">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2018-2019</h1>
+          <h1 class="post-title" itemprop="name headline">CLR-via-C#笔记——第五章</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-03T16:55:49+08:00">
-                2019-01-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-27T14:55:39+08:00">
+                2019-08-27
               </time>
             
 
@@ -320,19 +320,64 @@
       
 
       
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前不怎么写年终总结或展望，因为更多是走个形式。去年年初曾经订过一些年度的事项，刚才看了一眼除了学习方面倒也完成了七七八八。之所以打算这次写一些，主要还是由于两个因素，一是恰逢换了一份工作环境，相当于一个新的开始，的确有一些可以总结的东西，二是搭建了gitpage，也算用这个开个头。<br><a id="more"></a></p>
-<h4 id="工作-in-2018"><a href="#工作-in-2018" class="headerlink" title="工作 in 2018"></a>工作 in 2018</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年末的时候终于离开了呆了两年的创业团队，最后留下了两款上线steam的游戏。游戏的销量必然是有些惨淡的，不过相比于成绩，两年这段时间内的经历才是更重要的部分。两年的过程帮助我能够更好的对自己有所认识和定位，也让我对整个独立游戏行业有更多的了解和接触，这些都可以看作是收获，当然如果最后要给这两年打个分，我可能会给一个不及格吧。<strong>（5/10）</strong></p>
-<h4 id="游戏-in-2018"><a href="#游戏-in-2018" class="headerlink" title="游戏 in 2018"></a>游戏 in 2018</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从一名PC玩家开始向主机涉猎，PS4上MHW&amp;命运，NS上的塞尔达&amp;大乱斗，都有了足够的游戏时长。但是真正玩完的作品屈指可数，也是自己更容易沉迷刷刷刷这样无限机制的关系，游戏的总结自然也就比较少了，总体基本满意。<strong>(7/10)</strong></p>
-<h4 id="生活-in-2018"><a href="#生活-in-2018" class="headerlink" title="生活 in 2018"></a>生活 in 2018</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最大的成就莫过于完成了老特拉福德的朝圣，甚至我觉得这是过去两年间最值得高兴的事情。之前定下的阅读观影计划只能算完成一半，也是得亏了英国行路上有足够的时间。年末时候又认识了一些新朋友，对于常年宅着的我也是挺不错的结果。<strong>（8/10）</strong>  </p>
-<h4 id="2019-FLAG-时间"><a href="#2019-FLAG-时间" class="headerlink" title="2019 FLAG 时间"></a>2019 FLAG 时间</h4><ul>
-<li>连续第三年的flag，完成自己的游戏demo</li>
-<li>相对固定的更新gitpage个人页的文章</li>
-<li>补完一些之前一直打算玩的游戏和打算看的片子</li>
-<li>尝试认识更多有趣的朋友，也让自己变得更有趣</li>
-<li>日语N3</li>
-<li>保持运动以及尽可能的改善一些健康作息</li>
+        <h3 id="基元类型、引用类型和值类型"><a href="#基元类型、引用类型和值类型" class="headerlink" title="基元类型、引用类型和值类型"></a>基元类型、引用类型和值类型</h3><p>《CLR via C#》第五章：基元类型、引用类型和值类型<br><a id="more"></a></p>
+<h4 id="编程语言的基元类型"><a href="#编程语言的基元类型" class="headerlink" title="编程语言的基元类型"></a>编程语言的基元类型</h4><p>编译器直接支持的数据类型称为<strong>基元类型</strong>(primitive type)。<br>对基元类型执行的许多算术运算都可能造成溢出，可以使用checked和unchecked操作复来提供溢出检查。    </p>
+<ul>
+<li>尽量使用有符号数值类型。  </li>
+<li>如果可能发生不希望的溢出，把代码放到checked代码块中，并捕捉OverflowException。  </li>
+<li>将允许溢出的代码显式放到unchecked块中。  </li>
 </ul>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除了日语和Demo相对有一个比较明确里程碑，其他都没有特别清晰的判定标准，希望一年后的自己是进步的也是更有趣的一个人。</p>
+<h4 id="引用类型和值类型"><a href="#引用类型和值类型" class="headerlink" title="引用类型和值类型"></a>引用类型和值类型</h4><p>CKR支持两种类型：引用类型和值类型。  </p>
+<ul>
+<li>引用类型必须从<strong>托管堆</strong>分配。  </li>
+<li>对上分配的每个对象都有一些额外成员，这些成员必须初始化。  </li>
+<li>对象中的其他字节总是设为零。  </li>
+<li>从托管堆分配对象时，可能强制执行一次垃圾回收。  </li>
+</ul>
+<p>值类型的实例一般在<strong>线程栈</strong>上分配。<br>值类型的实例不受垃圾回收器的控制。<br>所有的值类型都隐式密封，目的是防止将值类型用作其他引用类型或值类型的基类。<br>C#中，用struct声明的类型是值类型，用class生命的类型是引用类型。<br>将类型声明为值类型需要满足下面条件：  </p>
+<ul>
+<li>类型具有基元类型的行为，没有成员会修改类型的任何实例字段。如果类型没有提供更改其字段的成员，就说改类型不可变(immutable)。对于许多值类型，建议将其全部字段标记为readonly。  </li>
+<li>类型不需要从其他任何类型继承  </li>
+<li>类型也不派生出任何其他类型<br>除此以外，还必须满足下面任意条件：  </li>
+<li>类型实例较小（16字节或更小）  </li>
+<li>类型实例较大，但不作为方法实参传递，也不从方法返回。  </li>
+</ul>
+<p>值类型和引用类型的区别：  </p>
+<ul>
+<li>值类型对象有两种表示形式：未装箱和已装箱。引用类型总是处于已装箱形式。  </li>
+<li>值类型从System.ValueType派生。该类型提供了与System.Object相同的方法，但重写了Equals方法和GetHashCode方法。定义自己的值类型时也应重写这两个方法，提供显式实现。  </li>
+<li>值类型中不应引入任何新的虚方法。所有方法都不能是抽象的，所有方法都隐式密封（不可重写）。  </li>
+<li>引用类型的变量包含堆中对象的地址。值类型变量总是包含其基础类型的一个值。  </li>
+<li>将值类型赋值给另一个值类型变量，会执行逐字段的复制。将引用类型的变量复制给另一个引用类型的变量只复制内存地址。  </li>
+<li>两个或多个引用类型变量能引用堆中同一个对象，对一个变量执行的操作可能影响到另一个变量引用的对象。值类型变量自成一体，对值类型变量执行的操作不会影响另一个值类型变量。  </li>
+<li>由于未装箱的值类型不在堆上分配，一但定义该类型的一个实例方法不再活动，分配的内存就将会被释放，而不是等待垃圾回收。  </li>
+</ul>
+<h4 id="值类型的装箱和拆箱"><a href="#值类型的装箱和拆箱" class="headerlink" title="值类型的装箱和拆箱"></a>值类型的装箱和拆箱</h4><p>将值类型转换成引用类型要使用装箱机制。<br>值类型实例进行装箱的过程：  </p>
+<ul>
+<li>在托管堆中分配内存。内存量为值类型各字段所需的内存两，加上托管堆所欲对象都有的两个额外成员所需的内存量（类型对象指针和同步块索引）。  </li>
+<li>值类型的字段复制到新分配的堆内存。  </li>
+<li>返回对象地址。<br>引用对象类型拆箱：  </li>
+<li>取得已装箱对象中各个字段的地址。（拆箱，拆箱其实是获取指针的过程，拆箱不要求在内存中复制任何字段，但拆箱过程往往紧跟着一次字段复制）  </li>
+<li>将字段字段包含的值从堆复制到基于栈的值类型实例中。（这一步不算拆箱过程）  </li>
+</ul>
+<p>对象的相等性和同一性<br>Object提供了静态方法ReferenceEquals。<br>实现自己类型时，重写的Equals要符合相等性的4个特性：  </p>
+<ul>
+<li>自反（x.Equals(x)必为true）  </li>
+<li>堆成（x.Equals(y)等于y.Equals(x)）  </li>
+<li>可传递（x.Equals(y)为true，y.Equals(z)为true，则x.Equals(z)必为true）  </li>
+<li>一致性（比较的值不变，Equals返回值也不变）  </li>
+</ul>
+<h4 id="对象哈希码"><a href="#对象哈希码" class="headerlink" title="对象哈希码"></a>对象哈希码</h4><p>如果重写了Equals方法，还应重写GetHashCode方法。<br>选择算法计算类型实例哈希值时，遵守以下规则：  </p>
+<ul>
+<li>算法要提供良好的随机分布，使哈希表获得最佳性能。  </li>
+<li>可在算法中调用基类的GetHashCode，并包含它的返回值。但不要调用Object或ValueType的GetHashCode方法。  </li>
+<li>算法至少使用一个实例字段。  </li>
+<li>理想状态下，算法使用的字段应该不可变。  </li>
+<li>算法执行速度尽量快。  </li>
+<li>包含相同值的不同对象应返回相同哈希码。  </li>
+</ul>
+<p>永远不要对哈希码进行持久化操作。  </p>
+<h4 id="dynamic基元类型"><a href="#dynamic基元类型" class="headerlink" title="dynamic基元类型"></a>dynamic基元类型</h4><p>允许将表达式的类型标记为dynamic，可以用dynamic表达式/变量调用成员。使用dynamic表达式/变量时，编译器生成特殊的IL代码，成为payload（有效载荷）。运行时，payload代码根据dynamic表达式/变量引用的对象实际类型来决定具体执行的操作。<br>dynamic和var不同，var只是一种简化语法，编译器根据表达式推断具体数据类型，只能在方法内部声明局部变量。dynamic关键字可用于局部变量，字段和参数。表达式不能转型为var，但能转型为dynamic。</p>
 
       
     </div>
@@ -350,7 +395,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Life/" rel="tag"># Life</a>
+            <a href="/tags/DevTech/" rel="tag"># DevTech</a>
           
         </div>
       
@@ -363,8 +408,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/14/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2019/08/27/CLR-via-C-笔记——第四章/" rel="next" title="CLR-via-C#笔记——第四章">
+                <i class="fa fa-chevron-left"></i> CLR-via-C#笔记——第四章
               </a>
             
           </div>
@@ -372,10 +417,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/07/在Unity中使用动态图集/" rel="prev" title="在Unity中使用动态图集">
-                在Unity中使用动态图集 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -498,7 +539,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#工作-in-2018"><span class="nav-number">1.</span> <span class="nav-text">工作 in 2018</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#游戏-in-2018"><span class="nav-number">2.</span> <span class="nav-text">游戏 in 2018</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生活-in-2018"><span class="nav-number">3.</span> <span class="nav-text">生活 in 2018</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2019-FLAG-时间"><span class="nav-number">4.</span> <span class="nav-text">2019 FLAG 时间</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基元类型、引用类型和值类型"><span class="nav-number">1.</span> <span class="nav-text">基元类型、引用类型和值类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#编程语言的基元类型"><span class="nav-number">1.1.</span> <span class="nav-text">编程语言的基元类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引用类型和值类型"><span class="nav-number">1.2.</span> <span class="nav-text">引用类型和值类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#值类型的装箱和拆箱"><span class="nav-number">1.3.</span> <span class="nav-text">值类型的装箱和拆箱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象哈希码"><span class="nav-number">1.4.</span> <span class="nav-text">对象哈希码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dynamic基元类型"><span class="nav-number">1.5.</span> <span class="nav-text">dynamic基元类型</span></a></li></ol></li></ol></div>
             
 
           </div>
