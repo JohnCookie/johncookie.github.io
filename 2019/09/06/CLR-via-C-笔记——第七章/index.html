@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="DevTech,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="JohnCookie&#39;s Blog">
-<meta property="og:url" content="https://johncookie.github.io/archives/2018/index.html">
+<meta name="description" content="常量与字段《CLR via C#》第七章：常量与字段">
+<meta name="keywords" content="DevTech">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CLR via C#笔记——第七章">
+<meta property="og:url" content="https://johncookie.github.io/2019/09/06/CLR-via-C-笔记——第七章/index.html">
 <meta property="og:site_name" content="JohnCookie&#39;s Blog">
+<meta property="og:description" content="常量与字段《CLR via C#》第七章：常量与字段">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-06T09:41:32.932Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JohnCookie&#39;s Blog">
+<meta name="twitter:title" content="CLR via C#笔记——第七章">
+<meta name="twitter:description" content="常量与字段《CLR via C#》第七章：常量与字段">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://johncookie.github.io/archives/2018/">
+  <link rel="canonical" href="https://johncookie.github.io/2019/09/06/CLR-via-C-笔记——第七章/">
 
 
 
 
 
-  <title>归档 | JohnCookie's Blog</title>
+  <title>CLR via C#笔记——第七章 | JohnCookie's Blog</title>
   
 
 
@@ -140,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -234,72 +239,150 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 11 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://johncookie.github.io/2019/09/06/CLR-via-C-笔记——第七章/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JohnCookie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JohnCookie's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/12/14/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">CLR via C#笔记——第七章</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-14T11:02:23+08:00" content="2018-12-14">
-          12-14
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-06T17:36:42+08:00">
+                2019-09-06
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <h3 id="常量与字段"><a href="#常量与字段" class="headerlink" title="常量与字段"></a>常量与字段</h3><p>《CLR via C#》第七章：常量与字段<br><a id="more"></a></p>
+<h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><p>定义常量符号时，它的值必须能在编译时确定。<br>常量总是被视为类型定义的一部分，总是被是为静态成员。<br>定义常量将创建元数据。<br>如果希望运行时从一个程序集提取另一个程序集中的值，不应当使用常量，而是使用readonly字段。  </p>
+<h4 id="字段"><a href="#字段" class="headerlink" title="字段"></a>字段</h4><p>字段是一种数据成员，容纳了一个值类型的实例或者对一个引用类型的引用。<br>字段修饰符包括：<br>CLR术语：Static, Instance, InitOnly, Volatile<br>C#术语：static, (默认), readonly, volatile  </p>
+<p>当某个字段是引用类型，该字段被标记为readonly时，不可改变的是引用而非字段引用的对象。  </p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DevTech/" rel="tag"># DevTech</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/06/CLR-via-C-笔记——第六章/" rel="next" title="CLR via C#笔记——第六章">
+                <i class="fa fa-chevron-left"></i> CLR via C#笔记——第六章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -307,6 +390,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -327,8 +414,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -379,6 +475,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常量与字段"><span class="nav-number">1.</span> <span class="nav-text">常量与字段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常量"><span class="nav-number">1.1.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字段"><span class="nav-number">1.2.</span> <span class="nav-text">字段</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -512,6 +624,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
