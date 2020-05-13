@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="DevTech,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="方法《CLR via C#》第八章：方法">
+<meta name="keywords" content="DevTech">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CLR via C# 笔记——第八章">
+<meta property="og:url" content="https://johncookie.github.io/2020/05/13/CLR-via-C-笔记——第八章/index.html">
+<meta property="og:site_name" content="JohnCookie&#39;s Blog">
+<meta property="og:description" content="方法《CLR via C#》第八章：方法">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-05-13T07:21:17.679Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CLR via C# 笔记——第八章">
+<meta name="twitter:description" content="方法《CLR via C#》第八章：方法">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://johncookie.github.io/2020/05/13/CLR-via-C-笔记——第八章/">
+
+
+
+
+
+  <title>CLR via C# 笔记——第八章 | JohnCookie's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JohnCookie's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A Lazy Indie Game Developer</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://johncookie.github.io/2020/05/13/CLR-via-C-笔记——第八章/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JohnCookie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JohnCookie's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CLR via C# 笔记——第八章</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-13T15:12:42+08:00">
+                2020-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>《CLR via C#》第八章：方法<br><a id="more"></a></p>
+<h4 id="实例构造器和类（引用类型）"><a href="#实例构造器和类（引用类型）" class="headerlink" title="实例构造器和类（引用类型）"></a>实例构造器和类（引用类型）</h4><p><strong>构造器</strong>是将类型的实例初始化为良好状态的特殊方法，在方法定义元数据表种始终叫做<strong>.ctor</strong>。<br>创建引用类型的实例会：<br>1 为实例的数据字段分配内存<br>2 初始化对象的附加字段（类型对象指针和同步块索引）<br>3 调用类型的实例构造器来设置对象的初始状态。  </p>
+<p>实例构造器无法被继承。默认定义一个无参构造器。<br>如果类为abstract，默认构造器的可访问性为protected。<br>如果基类没有提供无参构造器，派生类必须先是调用一个基类构造器。<br>如果类为static，则不会在类中生成默认构造器。  </p>
+<h4 id="实例构造器和结构（值类型）"><a href="#实例构造器和结构（值类型）" class="headerlink" title="实例构造器和结构（值类型）"></a>实例构造器和结构（值类型）</h4><p>CLR总是创建值类型的实例。值类型不需要定义构造器。<br>值类型允许定义构造器，但必须显示调用才会执行。<br>C#不允许为值类型定义无参构造器。  </p>
+<h4 id="类型构造器"><a href="#类型构造器" class="headerlink" title="类型构造器"></a>类型构造器</h4><p>又称为静态构造器、类构造器、类型初始化器。可以应用于接口、引用类型、值类型。<br>类型构造器永远没有参数。<br>类型构造器必须标记为static，并且总是私有。<br>类型构造器代码中只能访问类型的静态字段，常规用处即是用于初始化这些字段。  </p>
+<h4 id="操作符重载方法"><a href="#操作符重载方法" class="headerlink" title="操作符重载方法"></a>操作符重载方法</h4><p>CLR规范要求操作符重载方法必须是public和static的。<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> seled <span class="keyword">class</span> <span class="title">Complex</span> &#123;  </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> Complex <span class="keyword">operator</span>+ (Complex c1, Complex c2) &#123; ... &#125;  </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Complex <span class="title">Add</span>(<span class="params">Complex c1, Complex c2</span>)</span> &#123; <span class="keyword">return</span> (c1+c2); &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="转换操作符方法"><a href="#转换操作符方法" class="headerlink" title="转换操作符方法"></a>转换操作符方法</h4><p>如果源类型或目标类型不是基元类型，编译器会生成代码，要求CLR执行转换（强制转型）。<br>转换操作符是将对象从一种类型转换成另一种类型的方法。<br>CLR规范要求转换操作符方法必须是public和static的。<br>C#要求参数类型和返回类型至少有一个与定义转换方法的类型相同。<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> seled <span class="keyword">class</span> <span class="title">Rational</span> &#123;  </span><br><span class="line">	<span class="comment">// 由一个Int32构造一个Rational  </span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Rational</span>(<span class="params">Int32 num</span>)</span> &#123; ... &#125;  </span><br><span class="line">	<span class="comment">// 由一个Single构造一个Rational  </span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Rational</span>(<span class="params">Single num</span>)</span> &#123; ... &#125;  </span><br><span class="line">	<span class="comment">// 将一个Rational转换成一个Int32  </span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Int32 <span class="title">ToInt32</span>(<span class="params"></span>)</span> &#123; ... &#125;  </span><br><span class="line">	<span class="comment">// 将一个Rational转换成一个Single  </span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Single <span class="title">ToSingle</span>(<span class="params"></span>)</span> &#123; ... &#125;  </span><br><span class="line">  </span><br><span class="line">	<span class="comment">// 由一个Int32隐式构造并返回一个Rational  </span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">implicit</span> <span class="keyword">operator</span> <span class="title">Rational</span>(<span class="params">Int32 num</span>)</span> &#123;  </span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Rational(num);  </span><br><span class="line">	&#125;  </span><br><span class="line">	<span class="comment">// 由一个Single隐式构造并返回一个Rational  </span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">implicit</span> <span class="keyword">operator</span> <span class="title">Rational</span>(<span class="params">Single num</span>)</span> &#123;  </span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Rational(num);  </span><br><span class="line">	&#125;  </span><br><span class="line">	<span class="comment">// 由一个Rational显示返回一个Int32  </span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">explicit</span> <span class="keyword">operator</span> <span class="title">Int32</span>(<span class="params">Rational r</span>)</span> &#123;  </span><br><span class="line">		<span class="keyword">return</span> r.ToInt32();  </span><br><span class="line">	&#125;  </span><br><span class="line">	<span class="comment">// 由一个Rational显示返回一个Single  </span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">explicit</span> <span class="keyword">operator</span> <span class="title">Subgke</span>(<span class="params">Rational r</span>)</span> &#123;  </span><br><span class="line">		<span class="keyword">return</span> r.ToSingle();  </span><br><span class="line">	&#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在C#中，implicit关键字告诉编译器为了生成代码来调用方法，不需要再源代码中进行显示转型。explicit关键字告诉编译器，只有再发现了显示转型时，才调用方法。  </p>
+<h4 id="扩展方法"><a href="#扩展方法" class="headerlink" title="扩展方法"></a>扩展方法</h4><p>允许定义一个静态方法，并用实例方法的语法来调用。</p>
+<pre><code class="CSharp"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">StringBuilderExtensions</span>{
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Int32 <span class="title">IndexOf</span>(<span class="params"><span class="keyword">this</span> StringBuilder sb, Char <span class="keyword">value</span></span>)</span>{
+        <span class="keyword">for</span>(Int32 index = <span class="number">0</span>; index &lt; sb.Length; index++)
+            <span class="keyword">if</span>(sb[index] == <span class="keyword">value</span>) <span class="keyword">return</span> index;
+        <span class="keyword">return</span> <span class="number">-1</span>;    
+    }
+}
+</code></pre>
+<p>扩展方法的附加规则和原则：  </p>
+<ul>
+<li>C#只支持扩展方法，不支持扩展属性、扩展事件、扩展操作符等。  </li>
+<li>扩展方法必须在非泛型的静态类中声明。扩展方法至少有一个参数，并且只有第一个参数能用this关键字标记。  </li>
+<li>C#编译器在静态类中查找扩展方法时，要求静态类本身必须具有文件作用于。（不能是嵌套类）  </li>
+<li>多个静态类可以定义相同的扩展方法。  </li>
+<li>一个扩展方法扩展一个类型的同时也扩展了派生类。  </li>
+<li>扩展方法可能存在版本问题（后续版本添加了对应的实例方法）。<br>扩展方法实际是对一个静态方法的调用。  <h4 id="分部方法"><a href="#分部方法" class="headerlink" title="分部方法"></a>分部方法</h4><pre><code class="CSharp"><span class="keyword">internal</span> <span class="keyword">sealed</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">Base</span>{
+  <span class="comment">// 分部方法声明</span>
+  <span class="function"><span class="keyword">partial</span> <span class="keyword">void</span> <span class="title">OnNameChanging</span>(<span class="params">String <span class="keyword">value</span></span>)</span>;
+}
+<span class="comment">// 另一个源代码文件  </span>
+<span class="keyword">internal</span> <span class="keyword">sealed</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">Base</span>{
+  <span class="function"><span class="keyword">partial</span> <span class="keyword">void</span> <span class="title">OnNameChanging</span>(<span class="params">String <span class="keyword">value</span></span>)</span>{
+      <span class="comment">// ...    </span>
+  }
+}
+</code></pre>
+分部方法的规则和原则：  </li>
+<li>只能再分部类或结构中声明  </li>
+<li>分部方法返回类型始终未void，任何参数都不能用out修饰符来标记。  </li>
+<li>分部方法可以有ref参数，可以是泛型方法，可以是实例或静态方法，可以标记未unsafe。  </li>
+<li>分部方法的声明和实现必须具有完全一直的签名。  </li>
+<li>没有对应的实现部分，就不能在代码中创建一个委托来引用这个分部方法。  </li>
+<li>分部方法总是被视为private方法。  </li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DevTech/" rel="tag"># DevTech</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/06/CLR-via-C-笔记——第七章/" rel="next" title="CLR via C#笔记——第七章">
+                <i class="fa fa-chevron-left"></i> CLR via C#笔记——第七章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JohnCookie</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">1.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实例构造器和类（引用类型）"><span class="nav-number">1.1.</span> <span class="nav-text">实例构造器和类（引用类型）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例构造器和结构（值类型）"><span class="nav-number">1.2.</span> <span class="nav-text">实例构造器和结构（值类型）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类型构造器"><span class="nav-number">1.3.</span> <span class="nav-text">类型构造器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作符重载方法"><span class="nav-number">1.4.</span> <span class="nav-text">操作符重载方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#转换操作符方法"><span class="nav-number">1.5.</span> <span class="nav-text">转换操作符方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展方法"><span class="nav-number">1.6.</span> <span class="nav-text">扩展方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分部方法"><span class="nav-number">1.7.</span> <span class="nav-text">分部方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JohnCookie</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
