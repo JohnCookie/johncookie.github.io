@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="JohnCookie&#39;s Blog">
 <meta property="og:description" content="方法《CLR via C#》第八章：方法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-13T07:21:17.679Z">
+<meta property="og:updated_time" content="2020-08-13T07:45:12.743Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CLR via C# 笔记——第八章">
 <meta name="twitter:description" content="方法《CLR via C#》第八章：方法">
@@ -344,18 +344,21 @@
 <li>C#编译器在静态类中查找扩展方法时，要求静态类本身必须具有文件作用于。（不能是嵌套类）  </li>
 <li>多个静态类可以定义相同的扩展方法。  </li>
 <li>一个扩展方法扩展一个类型的同时也扩展了派生类。  </li>
-<li>扩展方法可能存在版本问题（后续版本添加了对应的实例方法）。<br>扩展方法实际是对一个静态方法的调用。  <h4 id="分部方法"><a href="#分部方法" class="headerlink" title="分部方法"></a>分部方法</h4><pre><code class="CSharp"><span class="keyword">internal</span> <span class="keyword">sealed</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">Base</span>{
-  <span class="comment">// 分部方法声明</span>
-  <span class="function"><span class="keyword">partial</span> <span class="keyword">void</span> <span class="title">OnNameChanging</span>(<span class="params">String <span class="keyword">value</span></span>)</span>;
+<li>扩展方法可能存在版本问题（后续版本添加了对应的实例方法）。<br>扩展方法实际是对一个静态方法的调用。  </li>
+</ul>
+<h4 id="分部方法"><a href="#分部方法" class="headerlink" title="分部方法"></a>分部方法</h4><pre><code class="CSharp"><span class="keyword">internal</span> <span class="keyword">sealed</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">Base</span>{
+    <span class="comment">// 分部方法声明</span>
+    <span class="function"><span class="keyword">partial</span> <span class="keyword">void</span> <span class="title">OnNameChanging</span>(<span class="params">String <span class="keyword">value</span></span>)</span>;
 }
 <span class="comment">// 另一个源代码文件  </span>
 <span class="keyword">internal</span> <span class="keyword">sealed</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">Base</span>{
-  <span class="function"><span class="keyword">partial</span> <span class="keyword">void</span> <span class="title">OnNameChanging</span>(<span class="params">String <span class="keyword">value</span></span>)</span>{
-      <span class="comment">// ...    </span>
-  }
+    <span class="function"><span class="keyword">partial</span> <span class="keyword">void</span> <span class="title">OnNameChanging</span>(<span class="params">String <span class="keyword">value</span></span>)</span>{
+        <span class="comment">// ...    </span>
+    }
 }
 </code></pre>
-分部方法的规则和原则：  </li>
+<p>分部方法的规则和原则：  </p>
+<ul>
 <li>只能再分部类或结构中声明  </li>
 <li>分部方法返回类型始终未void，任何参数都不能用out修饰符来标记。  </li>
 <li>分部方法可以有ref参数，可以是泛型方法，可以是实例或静态方法，可以标记未unsafe。  </li>
@@ -402,6 +405,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/13/CLR-via-C-笔记——第九章/" rel="prev" title="CLR via C#笔记——第九章">
+                CLR via C#笔记——第九章 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -478,7 +485,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
